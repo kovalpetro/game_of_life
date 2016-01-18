@@ -4,4 +4,10 @@ ruby "2.2.3"
 
 gem "minitest"
 gem "rake"
-gem "byebug"
+
+group :development, :test do
+  gem "byebug"
+  gem "pry"
+  gem "rubocop", require: false
+  gem "rubocop-checkstyle_formatter", require: false
+end

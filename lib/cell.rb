@@ -7,4 +7,12 @@ class Cell
     @y = pos.y
     @alive = alive
   end
+
+  def die
+    @alive = false
+  end
+
+  def born
+    @alive = true
+  end
 end
