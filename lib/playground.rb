@@ -12,7 +12,7 @@ class Playground
     [].tap do |cells|
       1.upto(width) do |x|
         1.upto(height) do |y|
-          pos = Position.new(x, y)
+          pos = Position.new(y, x)
           alive = seed.include?([x, y])
           cells << Cell.new(pos, alive)
         end
