@@ -13,7 +13,7 @@ describe "BornRule" do
   end
 
   it "should not change cell status using born rule" do
-    playground = DeathRule.use(@playground)
+    playground = BornRule.use(@playground)
     playground.cells[2].alive.must_equal false
   end
 end
