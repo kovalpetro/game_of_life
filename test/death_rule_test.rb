@@ -11,17 +11,17 @@ describe "DeathRule" do
 
   it "should set cell as dead if it had less than 2 neighbors" do
     playground_low = DeathRule.use(@playground_low)
-    playground_low[4].alive.must_equal false
+    playground_low.cells[4].alive.must_equal false
   end
 
   it "should set cell as dead if it had more than 3 neighbors" do
     # binding.pry
     playground_high = DeathRule.use(@playground_high)
-    playground_high[1].alive.must_equal false
+    playground_high.cells[1].alive.must_equal false
   end
 
   it "should not change cell status using death rule" do
     playground_high = DeathRule.use(@playground_high)
-    playground_high[0].alive.must_equal true
+    playground_high.cells[0].alive.must_equal true
   end
 end
