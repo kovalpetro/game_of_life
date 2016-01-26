@@ -3,6 +3,5 @@ class BornRule
     playground.cells.each do |cell|
       cell.born if playground.neighbors_of(cell).count(&:alive) == 3
     end
-    playground
   end
 end

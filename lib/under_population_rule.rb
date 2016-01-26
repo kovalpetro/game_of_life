@@ -3,6 +3,5 @@ class UnderPopulationRule
     playground.cells.each do |cell|
       cell.die if playground.neighbors_of(cell).count(&:alive) < 2
     end
-    playground
   end
 end

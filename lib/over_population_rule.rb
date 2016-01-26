@@ -3,6 +3,5 @@ class OverPopulationRule
     playground.cells.each do |cell|
       cell.die if playground.neighbors_of(cell).count(&:alive) > 3
     end
-    playground
   end
 end

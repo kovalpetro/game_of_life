@@ -9,10 +9,13 @@ iter = gets.chomp.to_i
 playground = Playground.new(size, seed)
 
 iter.times do |i|
+  duplicate = playground.dup
+  binding.pry
+  UnderPopulationRule.use(duplicate)
+  binding.pry
+  OverPopulationRule.use()
+  BornRule.use(playground_born)
+  playground = NextIteration.save()
   puts "---------------Iteration #{i + 1}---------------------"
-  playground_under_rule = UnderPopulationRule.use(playground)
-  playground_over_rule = OverPopulationRule.use(playground_under_rule)
-  playground_born_rule = BornRule.use(playground_over_rule)
-  playground = NextIteration.save(playground_born_rule)
   playground.cells.each { |cell| puts "[#{cell.x}, #{cell.y}], alive = #{cell.alive}" }
 end

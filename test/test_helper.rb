@@ -1,5 +1,4 @@
 require "minitest/autorun"
-require "byebug"
 require "pry"
 
 test_helper_dir = File.dirname(__FILE__)
