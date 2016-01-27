@@ -7,13 +7,13 @@ describe "BornRule" do
     @playground = Playground.new(@size, @seed_to_born)
   end
 
-  it "should set cell as alive if it had 3 neighbors" do
+  it "should set cell's current_state as alive if it had 3 neighbors" do
     BornRule.use(@playground)
-    @playground.cells[4].alive.must_equal true
+    @playground.cells[4].current_state.must_equal true
   end
 
-  it "should not change cell status using born rule" do
+  it "should not change cell's current_state using born rule" do
     BornRule.use(@playground)
-    @playground.cells[2].alive.must_equal false
+    @playground.cells[2].current_state.must_equal false
   end
 end

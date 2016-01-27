@@ -26,6 +26,7 @@ describe "Playground" do
     seeded_cells.each do |cell|
       cell.must_be_kind_of Cell
       cell.alive.must_equal true
+      cell.current_state.must_equal true
     end
   end
 

@@ -7,10 +7,14 @@ describe "NextIteration" do
     @playground = Playground.new(@size, @seed)
   end
 
-  it "should save current state of playground for next iteration" do
+  it "should save state of playground for next iteration" do
+    @playground.cells[0].alive.must_equal true
+    @playground.cells[4].alive.must_equal true
+    @playground.cells[8].alive.must_equal true
+    UnderPopulationRule.use(@playground)
     new_playground = NextIteration.save(@playground)
-    new_playground.cells[0].alive.must_equal true
+    new_playground.cells[0].alive.must_equal false
     new_playground.cells[4].alive.must_equal true
-    new_playground.cells[8].alive.must_equal true
+    new_playground.cells[8].alive.must_equal false
   end
 end

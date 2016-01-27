@@ -7,13 +7,13 @@ describe "OverPopuldatinRule" do
     @playground = Playground.new(@size, @seed)
   end
 
-  it "should set cell as dead if it had more than 3 neighbors" do
+  it "should set cell's current_state as dead if it had more than 3 neighbors" do
     OverPopulationRule.use(@playground)
-    @playground.cells[1].alive.must_equal false
+    @playground.cells[1].current_state.must_equal false
   end
 
-  it "should not change cell status using under populdation rule" do
+  it "should not change cell's current_state using under populdation rule" do
     OverPopulationRule.use(@playground)
-    @playground.cells[0].alive.must_equal true
+    @playground.cells[0].current_state.must_equal true
   end
 end

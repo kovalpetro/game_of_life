@@ -15,20 +15,24 @@ describe "Cell" do
     @cell.x.must_equal @x
     @cell.y.must_equal @y
     @cell.alive.must_equal dead
+    @cell.current_state.must_equal dead
   end
 
   it "should create alive cell" do
     cell = Cell.new(@pos, true)
     cell.alive.must_equal alive
+    cell.current_state.must_equal alive
   end
 
   it "#die" do
     @cell.die
     @cell.alive.must_equal dead
+    @cell.current_state.must_equal dead
   end
 
   it "#born" do
     @cell.born
-    @cell.alive.must_equal alive
+    @cell.alive.must_equal dead
+    @cell.current_state.must_equal alive
   end
 end
