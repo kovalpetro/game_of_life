@@ -10,3 +10,7 @@ group :development, :test do
   gem "rubocop", require: false
   gem "rubocop-checkstyle_formatter", require: false
 end
+
+group :test do
+  gem "ci_reporter_minitest"
+end
