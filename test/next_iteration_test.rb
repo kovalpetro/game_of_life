@@ -2,7 +2,7 @@ require_relative "./test_helper"
 
 describe "NextIteration" do
   before do
-    @seed= [[1, 1], [2, 2], [3, 3]]
+    @seed = [[1, 1], [2, 2], [3, 3]]
     @size = [3, 3]
     @playground = Playground.new(@size, @seed)
   end

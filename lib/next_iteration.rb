@@ -1,8 +1,6 @@
 class NextIteration
   def self.save(playground)
-    playground.cells.each do |cell|
-      cell.apply_state
-    end
+    playground.cells.each { |cell| cell.apply_state }
     playground
   end
 end

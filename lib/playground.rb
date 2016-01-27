@@ -1,5 +1,4 @@
 class Playground
-
   attr_reader :width, :height, :cells
 
   def initialize(size, seed = [])
@@ -23,8 +22,8 @@ class Playground
   def neighbors_of(main_cell)
     @cells.select do |cell|
       ((cell.x - main_cell.x).abs == 1 && cell.y == main_cell.y) ||
-      ((cell.y - main_cell.y).abs == 1 && cell.x == main_cell.x) ||
-      ((cell.x - main_cell.x).abs == 1 && (cell.y - main_cell.y).abs == 1)
+        ((cell.y - main_cell.y).abs == 1 && cell.x == main_cell.x) ||
+        ((cell.x - main_cell.x).abs == 1 && (cell.y - main_cell.y).abs == 1)
     end
   end
 end

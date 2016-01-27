@@ -1,7 +1,6 @@
 require_relative "./test_helper"
 
 describe "Position" do
-
   before do
     @x = 1
     @y = 1
