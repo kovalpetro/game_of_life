@@ -18,9 +18,9 @@ AllCops:
   Exclude:
   - "vendor/**/*"
   - "**/db/schema.rb"
-  RunRailsCops: false
   DisplayCopNames: false
   StyleGuideCopsOnly: false
+  TargetRubyVersion: 2.2
 Style/AccessModifierIndentation:
   Description: Check indentation of private/protected visibility modifiers.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#indent-public-private-protected
@@ -427,14 +427,18 @@ Style/TrailingBlankLines:
   SupportedStyles:
   - final_newline
   - final_blank_line
-Style/TrailingComma:
-  Description: Checks for trailing comma in parameter lists and literals.
-  StyleGuide: https://github.com/bbatsov/ruby-style-guide#no-trailing-array-commas
-  Enabled: false
+Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: no_comma
   SupportedStyles:
-  - comma
-  - no_comma
+    - comma
+    - consistent_comma
+    - no_comma
+Style/TrailingCommaInLiteral:
+  EnforcedStyleForMultiline: no_comma
+  SupportedStyles:
+    - comma
+    - consistent_comma
+    - no_comma
 Style/TrivialAccessors:
   Description: Prefer attr_* methods to trivial readers/writers.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#attr_family
@@ -553,11 +557,8 @@ Rails/ActionFilter:
   - filter
   Include:
   - app/controllers/**/*.rb
-Rails/DefaultScope:
-  Description: Checks if the argument passed to default_scope is a block.
+Rails:
   Enabled: true
-  Include:
-  - app/models/**/*.rb
 Rails/HasAndBelongsToMany:
   Description: Prefer has_many :through to has_and_belongs_to_many.
   Enabled: true
@@ -828,7 +829,7 @@ Style/SelfAssignment:
     used.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#self-assignment
   Enabled: false
-Style/SingleSpaceBeforeFirstArg:
+Style/SpaceBeforeFirstArg:
   Description: Checks that exactly one space is used between a method name and the
     first argument for method calls without parentheses.
   Enabled: true
