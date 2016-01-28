@@ -9,7 +9,8 @@ describe "Cell" do
     @new_matrix = MatrixRepresentation.new(@array, @size)
   end
 
-  let(:alive_cells) { [1, 1, 1] }
+  let(:alive_cells) { ["0", "0", "0"] }
+  let(:dead_cels)   { [" ", " ", " "] }
 
   it "#new" do
     @new_matrix.arr.must_equal @array
@@ -22,6 +23,7 @@ describe "Cell" do
     matrix.each_with_index do |array, index|
       array.must_be_kind_of Array
       array.must_equal alive_cells if index == 1
+      array.must_equal dead_cels unless index == 1
     end
   end
 end

@@ -15,7 +15,7 @@ class MatrixRepresentation
   def build
     [].tap do |output_array|
       arr.each do |cell|
-        cell.alive ? output_array << 1 : output_array << 0
+        cell.alive ? output_array << "0" : output_array << " "
       end
       output_array
     end

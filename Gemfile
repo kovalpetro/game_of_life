@@ -4,6 +4,7 @@ ruby "2.2.3"
 
 gem "minitest"
 gem "rake"
+gem "tty"
 
 group :development, :test do
   gem "pry"

@@ -10,10 +10,15 @@ GEM
       ci_reporter (~> 2.0)
       minitest (~> 5.0)
     coderay (1.1.0)
+    equatable (0.5.0)
     method_source (0.8.2)
     minitest (5.8.3)
+    necromancer (0.3.0)
     parser (2.3.0.1)
       ast (~> 2.2)
+    pastel (0.5.3)
+      equatable (~> 0.5.0)
+      tty-screen (~> 0.4.3)
     powerpack (0.1.1)
     pry (0.10.3)
       coderay (~> 1.1.0)
@@ -30,6 +35,43 @@ GEM
       rubocop (>= 0.20.1)
     ruby-progressbar (1.7.5)
     slop (3.6.0)
+    tty (0.3.2)
+      equatable (~> 0.5.0)
+      pastel (~> 0.5.1)
+      tty-cursor (~> 0.1.0)
+      tty-pager (~> 0.3.0)
+      tty-platform (~> 0.1.0)
+      tty-progressbar (~> 0.7.0)
+      tty-prompt (~> 0.2.0)
+      tty-screen (~> 0.4.0)
+      tty-spinner (~> 0.1.0)
+      tty-table (~> 0.4.0)
+      tty-which (~> 0.1.0)
+    tty-cursor (0.1.0)
+    tty-pager (0.3.0)
+      tty-screen (~> 0.4.0)
+      tty-which (~> 0.1.0)
+      verse (~> 0.4.0)
+    tty-platform (0.1.0)
+    tty-progressbar (0.7.0)
+      tty-screen (~> 0.4.0)
+    tty-prompt (0.2.0)
+      necromancer (~> 0.3.0)
+      pastel (~> 0.5.1)
+      tty-platform (~> 0.1.0)
+    tty-screen (0.4.3)
+    tty-spinner (0.1.0)
+    tty-table (0.4.0)
+      equatable (~> 0.5.0)
+      necromancer (~> 0.3.0)
+      pastel (~> 0.5.1)
+      tty-screen (~> 0.4.0)
+      unicode_utils (~> 1.4.0)
+      verse (~> 0.4.0)
+    tty-which (0.1.0)
+    unicode_utils (1.4.0)
+    verse (0.4.0)
+      unicode_utils (~> 1.4.0)
 
 PLATFORMS
   ruby
@@ -42,6 +84,7 @@ DEPENDENCIES
   rake
   rubocop
   rubocop-checkstyle_formatter
+  tty
 
 BUNDLED WITH
    1.11.2
