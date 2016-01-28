@@ -25,5 +25,3 @@ describe "Cell" do
     end
   end
 end
-# elem.must_equal 1 if alive_cells.include?(i)
-# elem.must_equal 0 unless alive_cells.include?(i)
