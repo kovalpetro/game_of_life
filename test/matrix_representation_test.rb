@@ -10,7 +10,7 @@ describe "Cell" do
   end
 
   let(:alive_cells) { ["0", "0", "0"] }
-  let(:dead_cels)   { [" ", " ", " "] }
+  let(:dead_cels)   { [".", ".", "."] }
 
   it "#new" do
     @new_matrix.arr.must_equal @array
