@@ -19,8 +19,8 @@ class Playground
 
   def fill_in(seed)
     [].tap do |cells|
-      1.upto(width) do |x|
-        1.upto(height) do |y|
+      1.upto(width) do |y|
+        1.upto(height) do |x|
           pos = Position.new(x, y)
           alive = seed.include?([x, y])
           cells << Cell.new(pos, alive)

@@ -1,5 +1,6 @@
 require "minitest/autorun"
 require "pry"
+require "byebug"
 
 test_helper_dir = File.dirname(__FILE__)
 root_dir = File.join(test_helper_dir, "..")

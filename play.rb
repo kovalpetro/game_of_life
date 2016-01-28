@@ -2,8 +2,11 @@ Dir[File.dirname(__FILE__) + "/lib/*.rb"].each { |file| require file }
 require "pry"
 require "matrix"
 
+# Example 1
 # size = [4, 4]
 # seed = [[1, 1], [1, 2], [2, 1], [4, 4], [3, 4], [4, 3]]
+
+# Example 2
 size = [3, 3]
 seed = [[1, 2], [2, 2], [3, 2]]
 puts "Enter number of iterations"
@@ -22,6 +25,6 @@ end
 
 playground_snapshots.each do |pg|
   puts "---------------Iteration---------------------"
-  array = ArrayCreator.new(Marshal.load(pg).cells, size).splitter
+  array = MatrixRepresentation.new(Marshal.load(pg).cells, size).prepare
   array.each { |arr| p arr }
 end
