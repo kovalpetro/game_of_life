@@ -7,6 +7,16 @@ class Playground
     @cells = fill_in(seed)
   end
 
+  def neighbors_of(main_cell)
+    @cells.select do |cell|
+      ((cell.x - main_cell.x).abs == 1 && cell.y == main_cell.y) ||
+        ((cell.y - main_cell.y).abs == 1 && cell.x == main_cell.x) ||
+        ((cell.x - main_cell.x).abs == 1 && (cell.y - main_cell.y).abs == 1)
+    end
+  end
+
+  private
+
   def fill_in(seed)
     [].tap do |cells|
       1.upto(width) do |x|
@@ -16,14 +26,6 @@ class Playground
           cells << Cell.new(pos, alive)
         end
       end
-    end
-  end
-
-  def neighbors_of(main_cell)
-    @cells.select do |cell|
-      ((cell.x - main_cell.x).abs == 1 && cell.y == main_cell.y) ||
-        ((cell.y - main_cell.y).abs == 1 && cell.x == main_cell.x) ||
-        ((cell.x - main_cell.x).abs == 1 && (cell.y - main_cell.y).abs == 1)
     end
   end
 end
