@@ -3,7 +3,7 @@ require_relative "./test_helper"
 describe "Cell" do
   before do
     seed = [[1, 2], [2, 2], [3, 2]]
-    @size = [3, 3]
+    @size = 3
     @playground = Playground.new(@size, seed)
     @array = @playground.cells
     @new_matrix = MatrixRepresentation.new(@array, @size)
@@ -14,7 +14,7 @@ describe "Cell" do
 
   it "#new" do
     @new_matrix.arr.must_equal @array
-    @new_matrix.elem_in_arr.must_equal @size[0]
+    @new_matrix.elem_in_arr.must_equal @size
   end
 
   it "#prepare" do

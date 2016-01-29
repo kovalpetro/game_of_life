@@ -3,7 +3,7 @@ require_relative "test_helper"
 describe "Playground" do
   before do
     @seed = [[1, 1], [2, 2], [3, 3]]
-    @size = [3, 3]
+    @size = 3
     @playground = Playground.new(@size, @seed)
   end
 
@@ -13,12 +13,12 @@ describe "Playground" do
 
   it "input data must be Array" do
     @seed.must_be_kind_of Array
-    @size.must_be_kind_of Array
+    @size.must_be_kind_of Fixnum
   end
 
   it "#new" do
-    @playground.height.must_equal @size[1]
-    @playground.width.must_equal @size[0]
+    @playground.height.must_equal @size
+    @playground.width.must_equal @size
   end
 
   it "#fill_in" do

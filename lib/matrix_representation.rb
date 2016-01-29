@@ -3,7 +3,7 @@ class MatrixRepresentation
 
   def initialize(arr, size)
     @arr = arr
-    @elem_in_arr = size[0]
+    @elem_in_arr = size
   end
 
   def prepare

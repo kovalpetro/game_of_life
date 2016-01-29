@@ -2,8 +2,7 @@ class Playground
   attr_reader :width, :height, :cells
 
   def initialize(size, seed = [])
-    @width = size[0]
-    @height = size[1]
+    @width = @height = size
     @cells = fill_in(seed)
   end
 
