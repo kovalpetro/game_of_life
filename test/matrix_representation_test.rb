@@ -1,6 +1,6 @@
 require_relative "./test_helper"
 
-describe "Cell" do
+describe "MatrixRepresentation" do
   before do
     seed = [[1, 2], [2, 2], [3, 2]]
     @size = 3
