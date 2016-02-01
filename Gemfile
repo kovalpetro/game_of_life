@@ -7,7 +7,6 @@ gem "rake"
 gem "tty"
 
 group :development, :test do
-  gem "pry"
   gem "byebug"
   gem "rubocop", require: false
   gem "rubocop-checkstyle_formatter", require: false

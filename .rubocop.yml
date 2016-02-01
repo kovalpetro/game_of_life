@@ -554,7 +554,7 @@ Rails/HasAndBelongsToMany:
   - app/models/**/*.rb
 Rails/Output:
   Description: Checks for calls to puts, print, etc.
-  Enabled: true
+  Enabled: false
   Include:
   - app/**/*.rb
   - config/**/*.rb

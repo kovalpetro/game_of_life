@@ -1,5 +1,3 @@
-require_relative "./test_helper"
-
 describe "BornRule" do
   before do
     @seed_to_born = [[1, 1], [1, 2], [2, 1]]

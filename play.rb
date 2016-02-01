@@ -27,4 +27,4 @@ iter.times do
   playground_snapshots << Marshal.dump(playground)
 end
 
-Output.show(playground_snapshots, size)
+Support::ConsoleWrite.show(playground_snapshots, size)
