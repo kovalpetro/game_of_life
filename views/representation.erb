@@ -1,0 +1,15 @@
+<div class="table-responsive">
+  <table class="table table-striped">
+    <tbody>
+      <% @array.each do |playground| %>
+        <% playground.each do |row| %>
+        <tr>
+          <% row.each do |element| %>
+            <td><%=element%></td>
+          <% end %>
+        </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
