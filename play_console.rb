@@ -5,7 +5,7 @@ puts "Enter size of playground"
 size = gets.chomp.to_i
 puts "Enter number of iterations"
 iter = gets.chomp.to_i
+puts "Enter path to example csv file"
+path = gets.chomp
 
-life_cycle = LifeCycle.new(CsvLoader.load("example_3.csv"), size, iter)
-
-Support::ConsoleWrite.show(life_cycle.start, size)
+Support::ConsoleWrite.show(LifeCycle.new(CsvLoader.load(path), size, iter).start, size)
