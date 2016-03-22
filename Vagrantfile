@@ -49,8 +49,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # config.vm.network :forwarded_port, guest: 22, host: 2222
   # Share SSH locally by default
   config.vm.network :forwarded_port, guest: 22, host: 2222, host_ip: "0.0.0.0", id: "ssh", auto_correct: true
-  config.vm.network :forwarded_port, guest: 3000,  host: 13000,  id: "web-app"
-  config.vm.network :forwarded_port, guest: 5432,  host: 15432,  id: "postgre"
+  config.vm.network :forwarded_port, guest: 4567,  host: 10000,  id: "web-app"
+  config.vm.network :forwarded_port, guest: 5432,  host: 20000,  id: "postgre"
 
   # If true, then any SSH connections made will enable agent forwarding.
   # Default value: false
