@@ -1,10 +1,10 @@
-require_relative "./test_helper"
+require_relative "../test_helper"
 
 describe "Position" do
   before do
     @x = 1
     @y = 1
-    @pos = Position.new(@x, @y)
+    @pos = Core::Position.new(@x, @y)
   end
 
   it "#new" do

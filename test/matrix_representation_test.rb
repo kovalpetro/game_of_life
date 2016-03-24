@@ -1,10 +1,10 @@
-require_relative "./test_helper"
+require_relative "test_helper"
 
 describe "MatrixRepresentation" do
   before do
     seed = [[1, 2], [2, 2], [3, 2]]
     @size = 3
-    @playground = Playground.new(@size, seed)
+    @playground = Core::Playground.new(@size, seed)
     @array = @playground.cells
     @new_matrix = MatrixRepresentation.new(@array, @size)
   end

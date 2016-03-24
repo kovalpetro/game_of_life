@@ -1,5 +1,6 @@
 class LifeCycle
   attr_reader :seed, :size, :iterations
+
   def initialize(seed, size, iterations)
     @seed = seed
     @size = size
@@ -8,14 +9,14 @@ class LifeCycle
 
   def start
     [].tap do |playground_snapshots|
-      playground = Playground.new(size, seed)
+      playground = Core::Playground.new(size, seed)
       playground_snapshots << Marshal.dump(playground)
 
       iterations.times do
-        Rules::UnderPopulationRule.use(playground)
-        Rules::OverPopulationRule.use(playground)
-        Rules::BornRule.use(playground)
-        playground = NextIteration.save(playground)
+        Core::Rules::UnderPopulationRule.use(playground)
+        Core::Rules::OverPopulationRule.use(playground)
+        Core::Rules::BornRule.use(playground)
+        playground = Core::NextIteration.save(playground)
         playground_snapshots << Marshal.dump(playground)
       end
 
