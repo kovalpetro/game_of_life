@@ -10,8 +10,6 @@ class MatrixRepresentation
     build.each_slice(elem_in_arr).to_a
   end
 
-  private
-
   def build
     [].tap do |output_array|
       arr.each do |cell|

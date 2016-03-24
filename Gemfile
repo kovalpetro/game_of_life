@@ -6,6 +6,7 @@ gem "minitest"
 gem "rake"
 gem "tty"
 gem "sinatra"
+gem "rmagick"
 
 group :development, :test do
   gem "byebug"
