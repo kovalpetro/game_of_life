@@ -6,12 +6,13 @@ get "/" do
 end
 
 post "/" do
+  data = CsvLoader.new(params[:seed])
+
   WebGenerateGif.new(
-    CsvLoader.load(params[:seed]),
-    params[:size],
+    data.load,
+    data.size,
     params[:iterations]
   ).generate
 
   erb :representation
 end
-
