@@ -8,14 +8,9 @@ class CsvLoader
   end
 
   def load
-    line_count = %x(wc -l #{file_path}).to_i
-
     [].tap do |out|
-      CSV.foreach(file_path) do |row|
-        out << row.map(&:to_i) unless $. == line_count
-        @size = row.first.to_i if $. == line_count
-      end
-
+      CSV.foreach(file_path) { |row| out << row.map(&:to_i) }
+      @size = out.pop.first
       out
     end
   end

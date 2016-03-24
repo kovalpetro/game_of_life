@@ -6,7 +6,7 @@ get "/" do
 end
 
 post "/" do
-  data = CsvLoader.new(params[:seed])
+  data = CsvLoader.new("examples/" + params[:seed])
 
   WebGenerateGif.new(
     data.load,

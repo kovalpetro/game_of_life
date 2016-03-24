@@ -5,7 +5,7 @@ class WebGenerateGif
 
   def initialize(seed, size, iterations)
     @seed = seed
-    @size = size.to_i
+    @size = size
     @iterations = iterations.to_i
   end
 
