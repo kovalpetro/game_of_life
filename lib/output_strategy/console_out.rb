@@ -1,5 +1,4 @@
 require "tty"
-require "byebug"
 
 module OutputStrategy
   module ConsoleOut

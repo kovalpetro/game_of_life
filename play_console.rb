@@ -8,7 +8,7 @@ path = gets.chomp
 seed_data = Support::CsvLoader.new(path)
 
 # Core processing
-cycle = Core::LifeCycle.new(seed_data.load, seed_data.size, iter)
+cycles = Core::LifeCycle.new(seed_data.load, seed_data.size, iter)
 
-# Output
-OutputStrategy::ConsoleOut.generate(cycle.start, cycle.size)
+# Console output
+OutputStrategy::ConsoleOut.generate(cycles.start, cycles.size)

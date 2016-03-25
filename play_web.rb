@@ -6,13 +6,13 @@ get "/" do
 end
 
 post "/" do
-  data = CsvLoader.new("examples/" + params[:seed])
+  # Input data
+  seed_data = Support::CsvLoader.new("examples/" + params[:seed])
 
-  WebGenerateGif.new(
-    data.load,
-    data.size,
-    params[:iterations]
-  ).generate
+  # Core processing
+  cycles = Core::LifeCycle.new(seed_data.load, seed_data.size, params[:iterations].to_i)
 
+  # Web output
+  OutputStrategy::WebOut.generate(cycles.start, cycles.size)
   erb :representation
 end
