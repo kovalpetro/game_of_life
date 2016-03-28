@@ -1,7 +1,6 @@
 Dir[File.dirname(__FILE__) + "/lib/**/*.rb"].each { |file| require file }
 require "socket"
 require "tty"
-require "byebug"
 
 class Client
   def initialize(server)
