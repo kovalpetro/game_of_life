@@ -11,7 +11,7 @@ class Server
     loop{
       Thread.start(@server.accept) do |client|
         data = eval client.gets.chomp
-        cycles = Core::LifeCycle.new(data[:seed],data[:size], data[:iter])
+        cycles = Core::LifeCycle.new(data[:seed],data[:size], data[:iter], true)
         cycles.start do |snapshot|
           output = {}
           output[:array] = Support::Convertors::Console.convert(snapshot.cells, cycles.size)

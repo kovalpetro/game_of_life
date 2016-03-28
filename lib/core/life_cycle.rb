@@ -1,11 +1,12 @@
 module Core
   class LifeCycle
-    attr_reader :seed, :size, :iterations
+    attr_reader :seed, :size, :iterations, :client_server
 
-    def initialize(seed, size, iterations)
+    def initialize(seed, size, iterations, client_server = false)
       @seed = seed
       @size = size
       @iterations = iterations
+      @client_server = client_server
     end
 
     def start
@@ -18,7 +19,7 @@ module Core
           Rules::OverPopulationRule.use(playground)
           Rules::BornRule.use(playground)
           playground = NextIteration.save(playground)
-          yield(playground)
+          yield(playground) if client_server
           playground_snapshots << Marshal.dump(playground)
         end
 
