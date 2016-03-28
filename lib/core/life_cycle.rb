@@ -18,6 +18,7 @@ module Core
           Rules::OverPopulationRule.use(playground)
           Rules::BornRule.use(playground)
           playground = NextIteration.save(playground)
+          yield(playground)
           playground_snapshots << Marshal.dump(playground)
         end
 
