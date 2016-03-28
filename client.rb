@@ -42,6 +42,4 @@ class Client
   end
 end
 
-server = TCPSocket.open("localhost", 10000)
-Client.new(server)
-
+Client.new(TCPSocket.open("localhost", 10000))
