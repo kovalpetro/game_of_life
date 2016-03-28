@@ -11,27 +11,31 @@ class Client
   end
 
   def send
-    attributes = {}
-    puts "Enter number of iterations"
-    attributes[:iter] = gets.chomp.to_i
+    Thread.new do
+      attributes = {}
+      puts "Enter number of iterations"
+      attributes[:iter] = gets.chomp.to_i
 
-    puts "Enter path to example csv file"
-    path = gets.chomp
+      puts "Enter path to example csv file"
+      path = gets.chomp
 
-    seed_data = Support::CsvLoader.new(path)
-    attributes[:seed] = seed_data.load
-    attributes[:size] = @size = seed_data.size
+      seed_data = Support::CsvLoader.new(path)
+      attributes[:seed] = seed_data.load
+      attributes[:size] = @size = seed_data.size
 
-    @server.puts(attributes)
+      @server.puts(attributes)
+    end
   end
 
   def listen
-    loop {
-      snapshot = eval(@server.gets.chomp)[:array]
-      table = TTY::Table[*snapshot]
-      puts `clear`
-      puts table.to_s
-    }
+    Thread.new do
+      loop {
+        snapshot = eval(@server.gets.chomp)[:array]
+        table = TTY::Table[*snapshot]
+        puts `clear`
+        puts table.to_s
+      }
+    end
   end
 end
 
