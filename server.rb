@@ -20,7 +20,7 @@ class Server
           puts "#{client} => Snapshot sended!"
         end
       end
-    }
+    }.join
   end
 end
 

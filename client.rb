@@ -6,12 +6,16 @@ require "byebug"
 class Client
   def initialize(server)
     @server = server
+    @request = nil
+    @response = nil
     send
     listen
+    @request.join
+    @response.join
   end
 
   def send
-    Thread.new do
+    @request = Thread.new do
       attributes = {}
       puts "Enter number of iterations"
       attributes[:iter] = gets.chomp.to_i
@@ -28,7 +32,7 @@ class Client
   end
 
   def listen
-    Thread.new do
+    @response = Thread.new do
       loop {
         snapshot = eval(@server.gets.chomp)[:array]
         table = TTY::Table[*snapshot]
