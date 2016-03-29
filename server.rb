@@ -4,23 +4,30 @@ require "socket"
 class Server
   def initialize(port)
     @server = TCPServer.open(port)
-    run
   end
 
   def run
     loop{
       Thread.start(@server.accept) do |client|
         data = eval client.gets.chomp
-        cycles = Core::LifeCycle.new(data[:seed],data[:size], data[:iter], true)
-        cycles.start do |snapshot|
-          output = {}
-          output[:array] = Support::Convertors::Console.convert(snapshot.cells, cycles.size)
-          client.puts(output)
-          puts "#{client} => Snapshot sended!"
-        end
+
+        process_data(data, client)
       end
-    }.join
+    }
+  end
+
+  private
+
+  def process_data(data, client)
+    cycles = Core::LifeCycle.new(data[:seed],data[:size], data[:iter], true)
+
+    cycles.start do |snapshot|
+      output = {}
+      output[:array] = Support::Convertors::Console.convert(snapshot.cells, cycles.size)
+      client.puts(output)
+      puts "#{client} => Snapshot sended!"
+    end
   end
 end
 
-Server.new(10000)
+Server.new(10000).run

@@ -3,43 +3,55 @@ require "socket"
 require "tty"
 
 class Client
+  attr_reader :attributes
+
   def initialize(server)
     @server = server
-    @request = nil
-    @response = nil
-    send
-    listen
-    @request.join
-    @response.join
+    @attributes = {}
   end
 
   def send
-    @request = Thread.new do
-      attributes = {}
-      puts "Enter number of iterations"
-      attributes[:iter] = gets.chomp.to_i
-
-      puts "Enter path to example csv file"
-      path = gets.chomp
-
-      seed_data = Support::CsvLoader.new(path)
-      attributes[:seed] = seed_data.load
-      attributes[:size] = @size = seed_data.size
-
-      @server.puts(attributes)
-    end
+    collect_data
+    @server.puts(attributes)
   end
 
   def listen
-    @response = Thread.new do
-      loop {
-        snapshot = eval(@server.gets.chomp)[:array]
-        table = TTY::Table[*snapshot]
-        puts `clear`
-        puts table.to_s
-      }
-    end
+    loop {
+      snapshot = eval(@server.gets.chomp)[:array]
+      print_result snapshot
+    }
+  end
+
+  private
+
+  def print_result(snapshot)
+    table = TTY::Table[*snapshot]
+    puts `clear`
+    puts table.to_s
+  end
+
+  def collect_data
+    puts "Enter number of iterations"
+    iterations = get_value.to_i
+
+    puts "Enter path to example csv file"
+    path = get_value
+
+    set_data(iterations, path)
+  end
+
+  def set_data(iterations, path)
+    seed_data = Support::CsvLoader.new(path)
+    @attributes[:seed] = seed_data.load
+    @attributes[:size] = @size = seed_data.size
+    @attributes[:iter] = iterations
+  end
+
+  def get_value
+    gets.chomp
   end
 end
 
-Client.new(TCPSocket.open("localhost", 10000))
+client = Client.new(TCPSocket.open("localhost", 10000))
+client.send
+client.listen
