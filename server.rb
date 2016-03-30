@@ -10,7 +10,7 @@ class Server
   def run
     loop{
       Thread.start(@server.accept) do |client|
-        data = JSON.parse client.gets.chomp
+        data = JSON.parse(client.gets.chomp)
         process_data(data, client)
         client.close
         puts "#{client} => Connection closed!"

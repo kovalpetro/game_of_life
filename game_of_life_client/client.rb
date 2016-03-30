@@ -15,7 +15,7 @@ module GameOfLifeClient
 
     def listen
       while snapshot = @socket.gets do
-        print_result (JSON.parse snapshot.chomp).fetch("console_out")
+        print_result JSON.parse(snapshot.chomp).fetch("console_out")
       end
     end
 

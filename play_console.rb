@@ -1,8 +1,8 @@
 Dir[File.dirname(__FILE__) + "/lib/**/*.rb"].each { |file| require file }
 
 # Input data
-iter = ARGV.first.chomp.to_i - 1 #Number of iterations
-path = ARGV.last.chomp           #Path to csv file
+iter = ARGV.first.chomp.to_i          #Number of iterations
+path = ARGV.last.chomp                #Path to csv file
 seed_data = Support::CsvLoader.new(path)
 
 # Core processing

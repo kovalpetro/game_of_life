@@ -8,7 +8,7 @@ end
 post "/" do
   # Input data
   seed_data = Support::CsvLoader.new("examples/" + params[:seed])
-  iter = params[:iterations].to_i - 1
+  iter = params[:iterations].to_i
 
   # Core processing
   game = Core::LifeCycle.new(seed_data.load, seed_data.size, iter)

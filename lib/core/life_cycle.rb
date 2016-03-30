@@ -11,8 +11,7 @@ module Core
 
     def start
       [].tap do |playground_snapshots|
-        playground = Playground.new(size, seed)
-        playground_snapshots << Marshal.dump(playground)
+        playground = Core::Playground.new(size, seed)
 
         iterations.times do
           playground = cycle(playground)
@@ -27,10 +26,10 @@ module Core
     private
 
     def cycle(playground)
-      Rules::UnderPopulationRule.use(playground)
-      Rules::OverPopulationRule.use(playground)
-      Rules::BornRule.use(playground)
-      NextIteration.save(playground)
+      Core::Rules::UnderPopulationRule.use(playground)
+      Core::Rules::OverPopulationRule.use(playground)
+      Core::Rules::BornRule.use(playground)
+      Core::NextIteration.save(playground)
     end
   end
 end
