@@ -4,8 +4,8 @@ module OutputStrategy
   module ConsoleOut
     def self.generate(snapshots, size)
       snapshots.each do |pg|
-        array = Support::Convertors::Console.convert(Marshal.load(pg).cells, size)
-        table = TTY::Table[*array]
+        console_out_array = Support::Convertors::Console.convert(Marshal.load(pg).cells, size)
+        table = TTY::Table[*console_out_array]
         puts `clear`
         puts table.to_s
         sleep 0.5

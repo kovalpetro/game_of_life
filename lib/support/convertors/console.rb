@@ -1,9 +1,9 @@
 module Support
   module Convertors
     module Console
-      def self.convert(array, elem_in_arr)
+      def self.convert(cells, elem_in_arr)
         [].tap do |output_array|
-          array.each do |cell|
+          cells.each do |cell|
             cell.alive ? output_array << "0" : output_array << "."
           end
           output_array

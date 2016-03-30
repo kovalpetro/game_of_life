@@ -1,17 +1,19 @@
 Dir[File.dirname(__FILE__) + "/lib/**/*.rb"].each { |file| require file }
 require "socket"
+require "json"
 
 class Server
-  def initialize(port)
-    @server = TCPServer.open(port)
+  def initialize(ip = "localhost", port = 10000)
+    @server = TCPServer.open(ip ,port)
   end
 
   def run
     loop{
       Thread.start(@server.accept) do |client|
-        data = eval client.gets.chomp
-
+        data = JSON.parse client.gets.chomp
         process_data(data, client)
+        client.close
+        puts "#{client} => Connection closed!"
       end
     }
   end
@@ -19,15 +21,15 @@ class Server
   private
 
   def process_data(data, client)
-    cycles = Core::LifeCycle.new(data[:seed],data[:size], data[:iter], true)
+    game = Core::LifeCycle.new(data["seed"],data["size"], data["iter"], true)
 
-    cycles.start do |snapshot|
+    game.start do |snapshot|
       output = {}
-      output[:array] = Support::Convertors::Console.convert(snapshot.cells, cycles.size)
-      client.puts(output)
+      output["console_out"] = Support::Convertors::Console.convert(snapshot.cells, game.size)
+      client.puts(output.to_json)
       puts "#{client} => Snapshot sended!"
     end
   end
 end
 
-Server.new(10000).run
+Server.new.run

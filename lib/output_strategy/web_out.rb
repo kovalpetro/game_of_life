@@ -4,11 +4,11 @@ module OutputStrategy
   module WebOut
     def self.generate(snapshots, size)
       snapshots.map.with_index do |pg, index|
-        data = Support::Convertors::Web.convert(Marshal.load(pg).cells, size)
+        web_out_array = Support::Convertors::Web.convert(Marshal.load(pg).cells, size)
 
         img = Magick::Image.new(size, size)
 
-        data.each_with_index do |row, row_index|
+        web_out_array.each_with_index do |row, row_index|
           row.each_with_index do |item, column_index|
             img.pixel_color(row_index, column_index, "rgb(#{item.join(', ')})")
           end

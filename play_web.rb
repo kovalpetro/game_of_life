@@ -8,11 +8,12 @@ end
 post "/" do
   # Input data
   seed_data = Support::CsvLoader.new("examples/" + params[:seed])
+  iter = params[:iterations].to_i - 1
 
   # Core processing
-  cycles = Core::LifeCycle.new(seed_data.load, seed_data.size, params[:iterations].to_i)
+  game = Core::LifeCycle.new(seed_data.load, seed_data.size, iter)
 
   # Web output
-  OutputStrategy::WebOut.generate(cycles.start, cycles.size)
+  OutputStrategy::WebOut.generate(game.start, game.size)
   erb :representation
 end

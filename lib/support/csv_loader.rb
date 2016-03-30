@@ -9,11 +9,9 @@ module Support
     end
 
     def load
-      [].tap do |out|
-        CSV.foreach(file_path) { |row| out << row.map(&:to_i) }
-        @size = out.pop.first
-        out
-      end
+      data = CSV.read(file_path, converters: :numeric)
+      @size = data.pop.first
+      data
     end
   end
 end

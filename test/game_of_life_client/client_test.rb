@@ -3,8 +3,7 @@ require "socket"
 
 describe "Client" do
   before do
-    server = TCPSocket.open("localhost", 10000)
-    @client = GameOfLifeClient::Client.new(server)
+    @client = GameOfLifeClient::Client.new
   end
 
   let(:iterations) { 5 }
@@ -13,17 +12,13 @@ describe "Client" do
   let(:size)       { 20 }
 
   it "attributes should be a hash" do
-    @client.attributes.must_be_kind_of Hash
-  end
-
-  it "attributes should be empty after initialization" do
-    @client.attributes.must_be_empty
+    @client.set_data(iterations, path).must_be_kind_of Hash
   end
 
   it "should set attributes" do
-    @client.set_data(iterations, path)
-    @client.attributes[:iter].must_equal iterations
-    @client.attributes[:seed].must_equal seed
-    @client.attributes[:size].must_equal size
+    data = @client.set_data(iterations, path)
+    data["iter"].must_equal iterations
+    data["seed"].must_equal seed
+    data["size"].must_equal size
   end
 end

@@ -1,33 +1,31 @@
 require "./lib/support/csv_loader"
 require "socket"
 require "tty"
+require "json"
 
 module GameOfLifeClient
   class Client
-    attr_reader :attributes
-
-    def initialize(server)
-      @server = server
-      @attributes = {}
+    def initialize(host = "localhost", port = 10000)
+      @socket = TCPSocket.open(host, port)
     end
 
     def send
-      collect_data
-      @server.puts(attributes)
+      @socket.puts(collect_data.to_json)
     end
 
     def listen
-      loop {
-        snapshot = eval(@server.gets.chomp)[:array]
-        print_result snapshot
-      }
+      while snapshot = @socket.gets do
+        print_result (JSON.parse snapshot.chomp).fetch("console_out")
+      end
     end
 
     def set_data(iterations, path)
+      attributes = {}
       seed_data = Support::CsvLoader.new(path)
-      @attributes[:seed] = seed_data.load
-      @attributes[:size] = seed_data.size
-      @attributes[:iter] = iterations
+      attributes["seed"] = seed_data.load
+      attributes["size"] = seed_data.size
+      attributes["iter"] = iterations
+      attributes
     end
 
     private
@@ -40,16 +38,12 @@ module GameOfLifeClient
 
     def collect_data
       puts "Enter number of iterations"
-      iterations = get_value.to_i
+      iterations = gets.chomp.to_i
 
       puts "Enter path to example csv file"
-      path = get_value
+      path = gets.chomp
 
       set_data(iterations, path)
-    end
-
-    def get_value
-      gets.chomp
     end
   end
 end
