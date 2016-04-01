@@ -29,10 +29,10 @@ module Core
       Core::Rules::UnderPopulationRule.use(playground)
       Core::Rules::OverPopulationRule.use(playground)
       Core::Rules::BornRule.use(playground)
-      apply_playground_state(playground)
+      apply_cell_state(playground)
     end
 
-    def apply_playground_state(playground)
+    def apply_cell_state(playground)
       playground.cells.each(&:apply_state)
       playground
     end
