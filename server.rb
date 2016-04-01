@@ -21,7 +21,7 @@ class Server
   private
 
   def process_data(data, client)
-    game = Core::LifeCycle.new(data["seed"],data["size"], data["iter"], true)
+    game = Core::LifeCycle.new(data["seed"],data["size"], data["iter"])
 
     game.start do |snapshot|
       output = {}
