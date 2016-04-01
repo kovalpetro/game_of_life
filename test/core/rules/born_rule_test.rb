@@ -2,7 +2,7 @@ describe "BornRule" do
   before do
     @seed_to_born = [[1, 1], [1, 2], [2, 1]]
     @size = 3
-    @playground = Core::Playground.new(@size, @seed_to_born)
+    @playground = Core::DataStructure::Playground.new(@size, @seed_to_born)
   end
 
   it "should set cell's current_state as alive if it had 3 neighbors" do

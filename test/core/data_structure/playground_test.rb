@@ -1,10 +1,10 @@
-require_relative "../test_helper"
+require_relative "../../test_helper"
 
 describe "Playground" do
   before do
     @seed = [[1, 1], [2, 2], [3, 3]]
     @size = 3
-    @playground = Core::Playground.new(@size, @seed)
+    @playground = Core::DataStructure::Playground.new(@size, @seed)
   end
 
   let(:neighbors_of_first_cell) { [[1, 2], [2, 1], [2, 2]] }
@@ -24,7 +24,7 @@ describe "Playground" do
   it "#fill_in" do
     seeded_cells = @playground.cells.select { |seeded| @seed.include?([seeded.x, seeded.y]) }
     seeded_cells.each do |cell|
-      cell.must_be_kind_of Core::Cell
+      cell.must_be_kind_of Core::DataStructure::Cell
       cell.alive.must_equal true
       cell.current_state.must_equal true
     end
@@ -35,7 +35,7 @@ describe "Playground" do
       cell = @playground.cells.first
       neighbors = @playground.neighbors_of(cell)
       neighbors.each do |neighbor|
-        neighbor.must_be_kind_of Core::Cell
+        neighbor.must_be_kind_of Core::DataStructure::Cell
         neighbors_of_first_cell.must_include [neighbor.x, neighbor.y]
       end
     end
@@ -44,7 +44,7 @@ describe "Playground" do
       cell = @playground.cells[4]
       neighbors = @playground.neighbors_of(cell)
       neighbors.each do |neighbor|
-        neighbor.must_be_kind_of Core::Cell
+        neighbor.must_be_kind_of Core::DataStructure::Cell
         neighbors_of_fifth_cell.must_include [neighbor.x, neighbor.y]
       end
     end
@@ -53,7 +53,7 @@ describe "Playground" do
       cell = @playground.cells.last
       neighbors = @playground.neighbors_of(cell)
       neighbors.each do |neighbor|
-        neighbor.must_be_kind_of Core::Cell
+        neighbor.must_be_kind_of Core::DataStructure::Cell
         neighbors_of_ninth_cell.must_include [neighbor.x, neighbor.y]
       end
     end

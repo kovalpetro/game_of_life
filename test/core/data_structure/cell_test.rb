@@ -1,11 +1,11 @@
-require_relative "../test_helper"
+require_relative "../../test_helper"
 
 describe "Cell" do
   before do
     @x = 1
     @y = 1
-    @pos = Core::Position.new(@x, @y)
-    @cell = Core::Cell.new(@pos)
+    @pos = Core::DataStructure::Position.new(@x, @y)
+    @cell = Core::DataStructure::Cell.new(@pos)
   end
 
   let(:dead)  { false }
@@ -19,7 +19,7 @@ describe "Cell" do
   end
 
   it "should create alive cell" do
-    cell = Core::Cell.new(@pos, true)
+    cell = Core::DataStructure::Cell.new(@pos, true)
     cell.alive.must_equal alive
     cell.current_state.must_equal alive
   end
