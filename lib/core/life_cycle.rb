@@ -2,7 +2,7 @@ module Core
   class LifeCycle
     attr_reader :seed, :size, :iterations, :client_strategy
 
-    def initialize(seed, size, iterations, client_strategy = false)
+    def initialize(seed, size, iterations)
       @seed = seed
       @size = size
       @iterations = iterations
@@ -16,7 +16,7 @@ module Core
         iterations.times do
           playground = cycle(playground)
           playground_snapshots << Marshal.dump(playground)
-          yield(playground) if client_strategy
+          yield(playground) if block_given?
         end
 
         playground_snapshots

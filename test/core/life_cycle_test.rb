@@ -16,15 +16,6 @@ describe "LifeCycle" do
     @game.iterations.must_equal @iter
   end
 
-  it "should set 'client_strategy' as false by default" do
-    @game.client_strategy.must_equal false
-  end
-
-  it "should set 'client_strategy' as true if put as an argument" do
-    another_game = Core::LifeCycle.new(@seed, @size, @iter, true)
-    another_game.client_strategy.must_equal true
-  end
-
   it "should response correct result of processing" do
     snapshots = @game.start
     cells_from_first_playground = Marshal.load(snapshots.first).cells
