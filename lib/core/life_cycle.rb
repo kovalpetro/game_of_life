@@ -10,17 +10,16 @@ module Core
     end
 
     def start
-      [].tap do |playground_snapshots|
-        playground = Core::DataStructure::Playground.new(size, seed)
+      playground_snapshots = []
+      playground = Core::DataStructure::Playground.new(size, seed)
 
-        iterations.times do
-          playground = cycle(playground)
-          playground_snapshots << Marshal.dump(playground)
-          yield(playground) if block_given?
-        end
-
-        playground_snapshots
+      iterations.times do
+        playground = cycle(playground)
+        playground_snapshots << Marshal.dump(playground)
+        yield(playground) if block_given?
       end
+
+      playground_snapshots
     end
 
     private
